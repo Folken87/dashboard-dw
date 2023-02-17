@@ -1,0 +1,2 @@
+C:\Users\folkm\source\repos\dashboard-dw\dashboard-dw\obj\Debug\dashboard-dw.esproj.SuggestedBindingRedirects.cache
+C:\Users\folkm\source\repos\dashboard-dw\dashboard-dw\obj\Debug\dashboard-dw.esproj.CoreCompileInputs.cache
