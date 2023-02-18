@@ -580,12 +580,15 @@ export default defineComponent({
       this.mStartPos.y = e.pageY;
       this.vbStartPos.x = this.vbPos.x;
       this.vbStartPos.y = this.vbPos.y;
-      if (e.target.id !== "svg2") this.$emit("getMapArea", e.target.id);
-      else this.$emit("getMapArea", -1);
+
       window.addEventListener("mouseup", this.mUp);
       this.mDownCheck = true;
+      this.$emit("getMapArea", -1);
     },
     mUp(e) {
+      // console.log(e.target.getBoundingClientRect())
+      if (e.target.id !== "svg2") this.$emit("getMapArea", e.target.id);
+      else this.$emit("getMapArea", -1);
       window.removeEventListener("mouseup", this.mUp);
       this.mDownCheck = false;
     },
