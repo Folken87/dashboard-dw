@@ -11,7 +11,21 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  font-family: "Tahoma";
+  font-family: "GT Eesti LC Text";
+  *::-webkit-scrollbar {
+    width: 4px; /* ширина scrollbar */
+  }
+  *::-webkit-scrollbar-track {
+    /* background: rgba(21, 255, 0, 0.096); цвет дорожки */
+    -moz-border-radius-bottomright: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(177, 177, 182, 0.2); /* цвет плашки */
+    border-radius: 20px; /* закругления плашки */
+    border: 2px solid rgba(100, 99, 98, 0.178); /* padding вокруг плашки */
+  }
 }
 
 .application-wrapper {
@@ -36,3 +50,11 @@ body {
     }
   }
 }
+
+
+
+
+@font-face {
+  font-family: GT Eesti LC Text;
+  src: url("./fonts/GT-Eesti-LC-Text-Regular.otf") format("opentype");
+  }

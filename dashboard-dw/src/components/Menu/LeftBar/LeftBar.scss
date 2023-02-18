@@ -25,27 +25,33 @@
     height: 5.185vmin;
     justify-content: center;
     align-items: center;
-    transition-duration: 0.3s;
+    transition: 0.3s background-color ease;
     border-right: 0.524vmin solid transparent;
     & > svg {
-      fill: white;
       width: 2.1vmin !important;
       height: 2.1vmin !important;
+      & > path {
+        fill: white;
+      }
     }
     &:hover {
-      transition-duration: 0.3s;
+      transition: 0.3s background-color ease;
       background-color: #453b90;
       border-right: 0.524vmin solid #d5f001;
       & > svg {
-        fill: #d5f001;
+        & > path {
+          fill: #d5f001;
+        }
       }
     }
     &.active {
-      transition-duration: 0.3s;
+      transition: 0.3s background-color ease;
       background-color: #453b90;
       border-right: 0.524vmin solid #d5f001;
       & > svg {
-        fill: #d5f001;
+        & > path {
+          fill: #d5f001;
+        }
       }
     }
   }
