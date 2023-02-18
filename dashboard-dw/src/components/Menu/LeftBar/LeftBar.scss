@@ -1,0 +1,52 @@
+.leftBar {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  width: 7.407vmin;
+  background: #8c64d8;
+  & > .logo {
+    width: 100%;
+    height: 5.926vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // & > svg {
+    //   fill: #d5f001;
+    // }
+    & > img {
+      width: 5.093vmin;
+      height: 5.093vmin;
+    }
+  }
+  & > .menuBtn {
+    display: flex;
+    flex-direction: row;
+    width: 7.407vmin - 0.524vmin;
+    height: 5.185vmin;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.3s;
+    border-right: 0.524vmin solid transparent;
+    & > svg {
+      fill: white;
+      width: 2.1vmin !important;
+      height: 2.1vmin !important;
+    }
+    &:hover {
+      transition-duration: 0.3s;
+      background-color: #453b90;
+      border-right: 0.524vmin solid #d5f001;
+      & > svg {
+        fill: #d5f001;
+      }
+    }
+    &.active {
+      transition-duration: 0.3s;
+      background-color: #453b90;
+      border-right: 0.524vmin solid #d5f001;
+      & > svg {
+        fill: #d5f001;
+      }
+    }
+  }
+}

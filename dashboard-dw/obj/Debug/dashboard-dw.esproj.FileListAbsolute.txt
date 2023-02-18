@@ -1,2 +1,4 @@
 C:\Users\folkm\source\repos\dashboard-dw\dashboard-dw\obj\Debug\dashboard-dw.esproj.SuggestedBindingRedirects.cache
 C:\Users\folkm\source\repos\dashboard-dw\dashboard-dw\obj\Debug\dashboard-dw.esproj.CoreCompileInputs.cache
+E:\Projects\dashboard-dw\dashboard-dw\obj\Debug\dashboard-dw.esproj.SuggestedBindingRedirects.cache
+E:\Projects\dashboard-dw\dashboard-dw\obj\Debug\dashboard-dw.esproj.CoreCompileInputs.cache

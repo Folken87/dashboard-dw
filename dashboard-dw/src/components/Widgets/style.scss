@@ -1,0 +1,35 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  //   width: 100%;
+  flex-grow: 1;
+  //   height: 25vmin;
+  background: #f5f3ff;
+  border: 0.185vmin solid #ededed;
+  box-shadow: 0px 0.37vmin 0.37vmin rgba(0, 0, 0, 0.45);
+  border-radius: 1.389vmin;
+  padding: 0.926vmin;
+  //   height: 100%;
+  & > .header {
+    font-weight: 700;
+    font-size: 1.481vmin;
+    line-height: 1.667vmin;
+    /* or 114% */
+
+    letter-spacing: 0.02em;
+
+    color: #000000;
+    padding-bottom: 1.389vmin;
+  }
+  & > .wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    & > canvas {
+    }
+  }
+}
