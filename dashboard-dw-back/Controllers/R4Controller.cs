@@ -1,8 +1,6 @@
 ﻿using dashboard_dw_back.Models;
 using dashboard_dw_back.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace dashboard_dw_back.Controllers
 {
@@ -17,12 +15,42 @@ namespace dashboard_dw_back.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Получение всех данных по 4 разделу, например по "Политические молодeжные общественные объединения"
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetR4Data")]
         public IEnumerable<R4ViewModel> Get()
         {
             using (PostgresContext db = new PostgresContext())
             {
                 return db.R4ViewModel.ToList();
+            }
+        }
+
+        /// <summary>
+        /// Вывод всех данных, но вместо названий категорий/округов/регионов - их ключи
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetR4DataWithKeys")]
+        public IEnumerable<R4> GetR4DataWithKeys()
+        {
+            using (PostgresContext db = new PostgresContext())
+            {
+                return db.R4s.ToList();
+            }
+        }
+
+        /// <summary>
+        /// Получение всех видов категорий в разделе 4
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetR4Categories")]
+        public IEnumerable<R4Category> GetCat()
+        {
+            using (PostgresContext db = new PostgresContext())
+            {
+                return db.R4Categories.ToList();
             }
         }
     }

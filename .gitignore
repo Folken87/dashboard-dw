@@ -688,3 +688,4 @@ __pycache__/
 # tools/
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore
+.vs/dashboard-dw/DesignTimeBuild/.dtbcache.v2

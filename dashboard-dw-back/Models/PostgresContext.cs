@@ -24,10 +24,13 @@ public partial class PostgresContext : DbContext
 
     public virtual DbSet<Subject> Subjects { get; set; }
     public virtual DbSet<R4ViewModel> R4ViewModel { get; set; }
+    public virtual DbSet<AttritionYouthView> AttritionYouthView { get; set; }
+
+    public virtual DbSet<AttritionYouth> AttritionYouths { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=79.137.194.168;Port=5432;Database=postgres;Username=postgres;Password=Q1w2e3r4zxc");
+        => optionsBuilder.UseNpgsql("Host=;Port=5432;Database=postgres;Username=postgres;Password=");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -86,6 +89,19 @@ public partial class PostgresContext : DbContext
         {
             entity.HasNoKey();
             entity.ToView("R4View");
+        });
+
+        modelBuilder.Entity<AttritionYouth>(entity =>
+        {
+            entity.ToTable("AttritionYouth");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+        });
+
+        modelBuilder.Entity<AttritionYouthView>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("AtrtittionYouthView");
         });
 
         OnModelCreatingPartial(modelBuilder);
