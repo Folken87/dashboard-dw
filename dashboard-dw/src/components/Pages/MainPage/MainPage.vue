@@ -213,7 +213,7 @@
       v-if="this.hoveredMapArea !== -1"
       :info="this.hoveredMapArea"
       :style="{
-        top: this.mapAreaInfoPos.y + 'px',
+        top: this.mapAreaInfoPos.y + 100 + 'px',
         left: this.mapAreaInfoPos.x + 15 + 'px',
       }"
       @getMapArea="GetMapArea"
@@ -292,7 +292,7 @@ export default defineComponent({
       filterR4Indexes: [],
       hoveredMapArea: -1,
       mapAreaInfoPos: { x: -1, y: -1 },
-      mPos: {x:0,y:0}
+      mPos: { x: 0, y: 0 },
     };
   },
   methods: {
@@ -309,7 +309,6 @@ export default defineComponent({
       this.hoveredMapArea = id;
     },
     mMove(e) {
-      
       this.mPos.x = e.offsetX;
       this.mPos.y = e.offsetY;
     },
