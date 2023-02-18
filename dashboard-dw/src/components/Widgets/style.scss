@@ -33,3 +33,84 @@
     }
   }
 }
+.customChart {
+  user-select: none;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  & > .chart {
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    width: 40%;
+    & > .centerChart {
+      position: absolute;
+      width: 40%;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      top: 30%;
+      left: 30%;
+      font-weight: 400;
+      font-size: 1.663vmin;
+      line-height: 1.489vmin;
+      color: #000000;
+    }
+  }
+  & > .legend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    width: 60%;
+    overflow-y: auto;
+    & > .headerText {
+      text-align: center;
+      font-weight: 400;
+      font-size: 1.481vmin;
+      line-height: 1.667vmin;
+      display: flex;
+      align-items: center;
+      color: #000000;
+    }
+  }
+}
+.legendLabel {
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.463vmin 0.926vmin;
+  & > .color {
+    width: 10%;
+    display: block;
+    width: 0.926vmin;
+    height: 0.926vmin;
+    border-radius: 0.263vmin;
+    margin: 0.463vmin;
+  }
+  & > .text {
+    width: 90%;
+    display: flex;
+    font-weight: 400;
+    font-size: 1.141vmin;
+    line-height: 1.226vmin;
+    /* or 125% */
+
+    color: #141b21;
+  }
+  & > .value {
+    // font-family: "GT Eesti LC Text";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 34px;
+    /* identical to box height, or 106% */
+
+    color: #000000;
+  }
+}

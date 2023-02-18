@@ -544,6 +544,12 @@
 </template>
 
 <script>
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+import $ from "jquery";
 import "./Map.scss";
 import { defineComponent } from "vue";
 export default defineComponent({
@@ -556,7 +562,17 @@ export default defineComponent({
       vbSize: { x: 1090, y: 620 },
       vbScale: 1,
       mDownCheck: false,
+      colors: ["#9899D3", "#8A6FC5", "#98C59C", "#A4C8D3", "#CCC360"],
     };
+  },
+  mounted() {
+    const app = this;
+    $(".map")
+      .find("path")
+      .each(function () {
+        let randomColor = app.colors[getRandomInt(0, app.colors.length - 1)];
+        $(this).css("fill", randomColor);
+      });
   },
   methods: {
     mDown(e) {
@@ -564,6 +580,8 @@ export default defineComponent({
       this.mStartPos.y = e.pageY;
       this.vbStartPos.x = this.vbPos.x;
       this.vbStartPos.y = this.vbPos.y;
+      if (e.target.id !== "svg2") this.$emit("getMapArea", e.target.id);
+      else this.$emit("getMapArea", -1);
       window.addEventListener("mouseup", this.mUp);
       this.mDownCheck = true;
     },
@@ -574,6 +592,7 @@ export default defineComponent({
     mMove(e) {
       this.mPos.x = e.offsetX;
       this.mPos.y = e.offsetY;
+
       if (this.mDownCheck) {
         //   console.log(e.target.id);
         let size = this.$refs.mapRef.getBoundingClientRect();
@@ -581,7 +600,7 @@ export default defineComponent({
           this.vbStartPos.x + (this.mStartPos.x - e.pageX) * this.vbScale;
         let newYpos =
           this.vbStartPos.y + (this.mStartPos.y - e.pageY) * this.vbScale;
-        if (newXpos <= 0 - 100 || newYpos <= 0) return;
+        if (newXpos <= 0 - 100 || newYpos <= 0 - 100) return;
         if (newXpos >= size.width * 0.9 || newYpos >= size.height * 0.8) return;
         this.vbPos.x = newXpos;
         this.vbPos.y = newYpos;
@@ -592,6 +611,7 @@ export default defineComponent({
       var scale = e.deltaY < 0 ? 0.8 : 1.2;
 
       if (this.vbScale * scale < 1.5 && this.vbScale * scale > 1 / 256) {
+        this.$emit("getMapArea", -1);
         var tempMPos = {
           x: this.mPos.x * this.vbScale,
           y: this.mPos.y * this.vbScale,
