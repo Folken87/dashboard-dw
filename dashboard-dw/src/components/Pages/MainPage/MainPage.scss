@@ -1,0 +1,84 @@
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  & > .header {
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    & > .name {
+      font-weight: 700;
+      font-size: 2.963vmin;
+      line-height: 3.611vmin;
+      color: #f5f3ff;
+    }
+  }
+  & > .widgets {
+    margin-top: 3.704vmin;
+    // display: flex;
+    // flex-direction: column;
+    // flex-grow: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: "a a1 a2 a3" "b c c c" "b1 c c c";
+    gap: 2vmin;
+    & > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      // padding: 10px;
+
+      // background: rgba(0, 0, 0, 0.1);
+    }
+    & > #a {
+      grid-area: a;
+    }
+    & > #a1 {
+      grid-area: a1;
+    }
+    & > #a2 {
+      grid-area: a2;
+    }
+    & > #a3 {
+      grid-area: a3;
+    }
+    & > #b {
+      grid-area: b;
+    }
+    & > #b1 {
+      grid-area: b1;
+    }
+    & > #c {
+      grid-area: c;
+    }
+    // .top {
+    //   z-index: 3;
+    //   display: flex;
+    //   flex-direction: row;
+    //   justify-content: space-between;
+    //   // position: absolute;
+    //   // top: 0;
+    //   // left: 0;
+    //   width: 100%;
+    //   // height: fit-content;
+    //   & > div {
+    //     margin-right: 0.926vmin;
+    //   }
+    // }
+    // .left {
+    //   z-index: 3;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: space-between;
+    //   // position: absolute;
+    //   // top: 0;
+    //   // left: 0;
+    //   height: 100%;
+    // }
+  }
+}
