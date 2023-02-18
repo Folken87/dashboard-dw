@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ynSkTW58Av/XjSUVr4xMXfi2OkEyojB8mPIaJNmqhA4=",
+  "Source": "dashboard-dw-back",
+  "BasePath": "_content/dashboard-dw-back",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
