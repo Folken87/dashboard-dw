@@ -2,6 +2,7 @@
   "profiles": {
     "dashboard_dw_back": {
       "commandName": "Project",
+      "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
