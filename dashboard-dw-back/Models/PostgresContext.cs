@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using dashboard_dw_back.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace dashboard_dw_back.Models;
@@ -22,12 +23,11 @@ public partial class PostgresContext : DbContext
     public virtual DbSet<R4Category> R4Categories { get; set; }
 
     public virtual DbSet<Subject> Subjects { get; set; }
-
-    public virtual DbSet<Testing> Testings { get; set; }
+    public virtual DbSet<R4ViewModel> R4ViewModel { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=79.137.194.168;Port=5432;Database=postgres;Username=postgres;Password=postgres");
+        => optionsBuilder.UseNpgsql("Host=79.137.194.168;Port=5432;Database=postgres;Username=postgres;Password=Q1w2e3r4zxc");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -82,13 +82,10 @@ public partial class PostgresContext : DbContext
                 .HasConstraintName("Districts");
         });
 
-        modelBuilder.Entity<Testing>(entity =>
+        modelBuilder.Entity<R4ViewModel>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("Testing_pkey");
-
-            entity.ToTable("Testing");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.HasNoKey();
+            entity.ToView("R4View");
         });
 
         OnModelCreatingPartial(modelBuilder);

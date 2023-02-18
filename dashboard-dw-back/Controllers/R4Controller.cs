@@ -1,4 +1,5 @@
 ﻿using dashboard_dw_back.Models;
+using dashboard_dw_back.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +18,11 @@ namespace dashboard_dw_back.Controllers
         }
 
         [HttpGet("GetR4Data")]
-        public IEnumerable<R4> Get()
+        public IEnumerable<R4ViewModel> Get()
         {
             using (PostgresContext db = new PostgresContext())
             {
-                return db.R4s.ToList();
+                return db.R4ViewModel.ToList();
             }
         }
     }
