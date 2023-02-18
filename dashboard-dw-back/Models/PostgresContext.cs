@@ -28,6 +28,12 @@ public partial class PostgresContext : DbContext
 
     public virtual DbSet<AttritionYouth> AttritionYouths { get; set; } = null!;
 
+    public virtual DbSet<R2> R2s { get; set; } = null!;
+    public virtual DbSet<R2View> R2View { get; set; }
+
+    public virtual DbSet<R1> R1s { get; set; } = null!;
+    public virtual DbSet<R1View> R1View { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseNpgsql("Host=;Port=5432;Database=postgres;Username=postgres;Password=");
@@ -102,6 +108,44 @@ public partial class PostgresContext : DbContext
         {
             entity.HasNoKey();
             entity.ToView("AtrtittionYouthView");
+        });
+
+        modelBuilder.Entity<R2>(entity =>
+        {
+            entity.ToTable("R2");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.CountWorkersHs).HasColumnName("CountWorkersHS");
+
+            entity.Property(e => e.R2catId).HasColumnName("R2CatId");
+
+            entity.Property(e => e.R2subCatId).HasColumnName("R2SubCatId");
+        });
+
+        modelBuilder.Entity<R2View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R2View");
+        });
+
+        modelBuilder.Entity<R1>(entity =>
+        {
+            entity.ToTable("R1");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.BudgetMo).HasColumnName("BudgetMO");
+
+            entity.Property(e => e.BudgetSrf).HasColumnName("BudgetSRF");
+
+            entity.Property(e => e.R2catId).HasColumnName("R2CatId");
+        });
+
+        modelBuilder.Entity<R1View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R1View");
         });
 
         OnModelCreatingPartial(modelBuilder);
