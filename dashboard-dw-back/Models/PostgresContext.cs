@@ -17,16 +17,23 @@ public partial class PostgresContext : DbContext
     }
 
     public virtual DbSet<FederalDistrict> FederalDistricts { get; set; }
-
     public virtual DbSet<R4> R4s { get; set; }
-
     public virtual DbSet<R4Category> R4Categories { get; set; }
-
     public virtual DbSet<Subject> Subjects { get; set; }
     public virtual DbSet<R4ViewModel> R4ViewModel { get; set; }
     public virtual DbSet<AttritionYouthView> AttritionYouthView { get; set; }
-
     public virtual DbSet<AttritionYouth> AttritionYouths { get; set; } = null!;
+    public virtual DbSet<R2> R2s { get; set; } = null!;
+    public virtual DbSet<R2View> R2View { get; set; }
+    public virtual DbSet<R1> R1s { get; set; } = null!;
+    public virtual DbSet<R1View> R1View { get; set; }
+    public virtual DbSet<R42> R42s { get; set; } = null!;
+    public virtual DbSet<R4_2View> R4_2View { get; set; }
+    public virtual DbSet<R6> R6s { get; set; } = null!;
+    public virtual DbSet<R6View> R6View { get; set; }
+    public virtual DbSet<R7> R7s { get; set; } = null!;
+    public virtual DbSet<R7View> R7View { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -102,6 +109,95 @@ public partial class PostgresContext : DbContext
         {
             entity.HasNoKey();
             entity.ToView("AtrtittionYouthView");
+        });
+
+        modelBuilder.Entity<R2>(entity =>
+        {
+            entity.ToTable("R2");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.CountWorkersHs).HasColumnName("CountWorkersHS");
+
+            entity.Property(e => e.R2catId).HasColumnName("R2CatId");
+
+            entity.Property(e => e.R2subCatId).HasColumnName("R2SubCatId");
+        });
+
+        modelBuilder.Entity<R2View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R2View");
+        });
+
+        modelBuilder.Entity<R1>(entity =>
+        {
+            entity.ToTable("R1");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.BudgetMo).HasColumnName("BudgetMO");
+
+            entity.Property(e => e.BudgetSrf).HasColumnName("BudgetSRF");
+
+            entity.Property(e => e.R2catId).HasColumnName("R2CatId");
+        });
+
+        modelBuilder.Entity<R1View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R1View");
+        });
+
+        modelBuilder.Entity<R42>(entity =>
+        {
+            entity.ToTable("R4-2");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.CountUnionHs).HasColumnName("CountUnionHS");
+
+            entity.Property(e => e.CountUnionHsmembers).HasColumnName("CountUnionHSMembers");
+
+            entity.Property(e => e.CountUnionSpo).HasColumnName("CountUnionSPO");
+
+            entity.Property(e => e.CountUnionSpomembers).HasColumnName("CountUnionSPOMembers");
+        });
+
+        modelBuilder.Entity<R4_2View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R4-2View");
+        });
+
+        modelBuilder.Entity<R6>(entity =>
+        {
+            entity.ToTable("R6");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.R6catId).HasColumnName("R6CatId");
+        });
+
+        modelBuilder.Entity<R6View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R6View");
+        });
+
+        modelBuilder.Entity<R7>(entity =>
+        {
+            entity.ToTable("R7");
+
+            entity.Property(e => e.Id).UseIdentityAlwaysColumn();
+
+            entity.Property(e => e.R7catId).HasColumnName("R7CatId");
+        });
+
+        modelBuilder.Entity<R7View>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView("R7View");
         });
 
         OnModelCreatingPartial(modelBuilder);
