@@ -541,6 +541,7 @@
         style=""
       ></path>
     </svg>
+    <Ranges />
   </div>
 </template>
 
@@ -552,8 +553,13 @@ function getRandomInt(min, max) {
 }
 import $ from "jquery";
 import "./Map.scss";
+import Ranges from "./Ranges.vue";
 import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 export default defineComponent({
+  components: {
+    Ranges,
+  },
   data() {
     return {
       mStartPos: { x: 0, y: 0 },
@@ -564,6 +570,7 @@ export default defineComponent({
       vbScale: 1,
       mDownCheck: false,
       colors: ["#9899D3", "#8A6FC5", "#98C59C", "#A4C8D3", "#CCC360"],
+
       areas: new Array(
         // ["RU-MOW", "Москва"],
         // ["RU-CHE", "Челябинская область"],
@@ -826,15 +833,20 @@ export default defineComponent({
       ),
     };
   },
-  mounted() {
-    const app = this;
-    $(".map")
-      .find("path")
-      .each(function () {
-        let randomColor = app.colors[getRandomInt(0, app.colors.length - 1)];
-        $(this).css("fill", randomColor);
-      });
+  computed: {
+    ...mapGetters("MainPage", [
+      "getSubjectInfo",
+      "getKeyForMap",
+      "getRegionFilterId",
+    ]),
+    getKeyForMapS() {
+      return this.reloadMapColor();
+    },
+    getRegionFilterIdS() {
+      return this.reloadMapColor();
+    },
   },
+  mounted() {},
   methods: {
     mDown(e) {
       this.mStartPos.x = e.pageX;
@@ -917,6 +929,42 @@ export default defineComponent({
     getIdRegion(str) {
       // console.log(str, this.areas.find((el) => el[0] === str)[1]);
       return this.areas.find((el) => el[0] === str)[1];
+    },
+    getColor(id) {
+      const koef = this.getSubjectInfo(id)?.koef * 100;
+      if (koef < 21) return "#8A6FC5";
+      else if (koef < 41) return "#9899D3";
+      else if (koef < 61) return "#A4C8D3";
+      else if (koef < 81) return "#98C59C";
+      else if (koef < 101) return "#CCC360";
+      return "lightgray";
+    },
+    reloadMapColor() {
+      const app = this;
+      setTimeout(() => {
+        $(".map")
+          .find("path")
+          .each(function () {
+            // let randomColor = app.colors[getRandomInt(0, app.colors.length - 1)];
+            const idRegion = app.getIdRegion(this.id);
+
+            // if (app.getRegionFilterId == -1) {
+            $(this).css("fill", app.getColor(idRegion));
+            // } else {
+            //   console.log(idRegion === app.getRegionFilterId)
+            //   if(idRegion === app.getRegionFilterId){
+            //     $(this).css("fill", app.getColor(idRegion));
+            //   } else {
+            //     $(this).css("fill", 'transparent');
+            //   }
+            // }
+          });
+      }, 100);
+    },
+  },
+  watch: {
+    getKeyForMap(oldVal, newVal) {
+      this.reloadMapColor();
     },
   },
 });

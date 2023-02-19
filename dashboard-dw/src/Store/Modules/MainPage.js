@@ -24,6 +24,7 @@ export default {
         datasets: [
           {
             label: "Бюджет",
+            yAxisID: "A",
             backgroundColor: "#8C64D8",
             data: [0, 0, 0],
             countPeople: [],
@@ -45,6 +46,7 @@ export default {
           },
           {
             label: "Количество организаций",
+            yAxisID: "B",
             backgroundColor: "#FA873A",
             borderColor: "#FA873A",
             data: [0, 0, 0],
@@ -86,6 +88,7 @@ export default {
           {
             label: "Количество общественных объединений МП",
             backgroundColor: "#8C64D8",
+            yAxisID: "A",
             data: [0, 0, 0],
             countPeople: [],
             pointStyle: "rect",
@@ -105,6 +108,7 @@ export default {
           {
             label: "Численность обучающихся",
             backgroundColor: "#FA873A",
+            yAxisID: "B",
             borderColor: "#FA873A",
             data: [0, 0, 0],
             countPeople: [],
@@ -150,8 +154,16 @@ export default {
     youngForum: [],
     volonteur: [],
     r2: [],
+    keyForMap: -1,
+    regionFilterId: -1,
   },
   getters: {
+    getRegionFilterId: (state)=> state.regionFilterId,
+    getAllRegions: (state) =>
+      state.subjects.map((el) => {
+        return [el.id, el.name];
+      }),
+    getKeyForMap: (state) => state.keyForMap,
     getStats: (state) => (id) =>
       state.stats[id] || {
         labels: [],
@@ -160,19 +172,22 @@ export default {
     getSubjectInfo: (state) => (id) => {
       let temp = state.subjects.find((el) => el.id === id) || null;
       if (temp == null) return null;
-     
       temp.countPeople = state.atrtittionYouth
         .filter((el) => el.subjectId == id)
         .reduce((sum, x) => sum + x.youngCount * 1000, 0);
       temp.percentLeave = state.atrtittionYouth
         .filter((el) => el.subjectId == id)
         .reduce((sum, x) => sum + x.partAttritionYoung, 0);
-        let filtered = state.r2
-        .filter((el) => el.subjectId == id)
-      temp.countStruct = filtered
-        .reduce((sum, x) => sum + x.countStruct, 0);
-      temp.countWorkers = filtered
-        .reduce((sum, x) => sum + x.countWorkers, 0);
+      let filtered = state.r2.filter((el) => el.subjectId == id);
+      temp.countStruct = filtered.reduce((sum, x) => sum + x.countStruct, 0);
+      temp.countWorkers = filtered.reduce((sum, x) => sum + x.countWorkers, 0);
+      temp.koef =
+        filtered.reduce((sum, x) => sum + x.costsEvents, 0) /
+        filtered.reduce((sum, x) => sum + x.countFinValue, 0);
+      // (filtered.reduce((sum, x) => sum + x.countFinValue, 0) -
+      //   filtered.reduce((sum, x) => sum + x.costsEvents, 0)) /
+      // filtered.reduce((sum, x) => sum + x.countFinValue, 0);
+
       return temp;
     },
   },
@@ -285,12 +300,10 @@ export default {
         state.stats[1].datasets[0].countMember += el.countEventMember;
       });
       let m2 = new Map([...categories.entries()].sort((a, b) => b[1] - a[1]));
-      console.log(categories);
-      console.log(categories2);
+
       let map = m2;
       let arrayTmp = Array.from(map).slice(0, 5);
       let myMap = new Map(arrayTmp);
-      console.log(myMap);
       state.stats[1].labels = [...myMap.keys()];
       state.stats[1].datasets[0].data = [...myMap.values()];
       for (let i = 0; i < 5; i++) {
@@ -301,6 +314,7 @@ export default {
     },
     setR2Data(state, payload) {
       state.r2 = payload;
+      state.keyForMap = Math.random();
       payload.forEach((el) => {
         state.stats[0].datasets[el.r2CatId - 1].data[0] += Math.floor(
           el.countFinValue / 1000000
@@ -316,6 +330,11 @@ export default {
     },
     setSubjects(state, payload) {
       state.subjects = payload;
+      state.keyForMap = Math.random();
+    },
+    setRegionFilter(state, payload) {
+      state.regionFilterId = payload;
+      state.keyForMap = Math.random();
     },
   },
   actions: {
@@ -342,6 +361,9 @@ export default {
     },
     setSubjects({ commit }, payload) {
       commit("setSubjects", payload);
+    },
+    setRegionFilter({ commit }, payload) {
+      commit("setRegionFilter", payload);
     },
   },
 };

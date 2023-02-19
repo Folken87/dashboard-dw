@@ -8,6 +8,14 @@
       >Выехавшая молодёжь за год:
       {{ (this.subjectInfo?.percentLeave * 100).toFixed(2) }}%</span
     >
+    <span
+      >Коэффициент финансирования:
+      {{
+        isNaN(this.subjectInfo?.koef)
+          ? 0
+          : Math.floor(this.subjectInfo?.koef * 100)
+      }}%</span
+    >
   </div>
 </template>
 <script>

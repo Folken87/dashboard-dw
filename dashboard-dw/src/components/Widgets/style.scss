@@ -1,4 +1,5 @@
 .widget {
+  user-select: none;
   display: flex;
   flex-direction: column;
   //   width: 100%;
@@ -85,7 +86,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 0.463vmin 0.926vmin;
+  // padding: 0.463vmin 0.926vmin;
   & > .color {
     display: block;
     width: 0.926vmin;
@@ -100,18 +101,20 @@
     font-size: 1.2vmin;
     line-height: 1.226vmin;
     color: #141b21;
+    padding-right: 0.2vmin;
   }
   & > .value {
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
-    line-height: 34px;
+    font-size: 2.963vmin;
+    line-height: 3.148vmin;
 
     color: #000000;
   }
 }
 
 .mapAreaHint {
+  user-select: none;
   position: absolute;
   z-index: 5;
   & > span {

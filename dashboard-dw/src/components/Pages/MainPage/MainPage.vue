@@ -5,6 +5,8 @@
         <span>Мониторинг эффективности молодежной политики</span>
       </div>
       <div class="controls">
+        <DropdownList :items="[[-1, 'Все регионы'], ...this.getAllRegions]" @changeVal="changeRegionFilter" />
+        <DropdownList :items="[[2021, 2021]]" />
         <!-- <span>Регион</span>
         <span>Регион</span>
         <span>Регион</span> -->
@@ -15,8 +17,8 @@
       <StandartWidget id="a">
         <template v-slot:header
           >Распределение бюджетов по направлениям молодёжной политики
-          <span style="color: #87868c">млн руб.</span></template
-        >
+          <!-- <span style="color: #87868c">млн руб.</span> -->
+        </template>
         <template v-slot:default>
           <div class="row">
             <div class="col w-50 jc-end">
@@ -80,6 +82,18 @@
                   },
                 },
                 scales: {
+                  A: {
+                    id: 'A',
+                    type: 'linear',
+                    position: 'left',
+                    display: false,
+                  },
+                  B: {
+                    id: 'B',
+                    type: 'linear',
+                    position: 'left',
+                    display: false,
+                  },
                   x: {
                     grid: {
                       display: false,
@@ -94,6 +108,8 @@
                     },
                     ticks: {
                       display: false,
+                      max: 1,
+                      min: 0,
                     },
                   },
                 },
@@ -105,8 +121,8 @@
       <StandartWidget id="a1">
         <template v-slot:header
           >Получатели финансирования на работы с молодёжью
-          <span style="color: #87868c">млн руб.</span></template
-        >
+          <!-- <span style="color: #87868c">млн руб.</span> -->
+        </template>
         <template v-slot:default>
           <div class="row h-10" style="font-size: 1.396vmin; font-weight: 600">
             Объемы финансирования и расходы на мероприятия
@@ -226,7 +242,7 @@
       <StandartWidget id="a2">
         <template v-slot:header
           >Вовлеченность учащихся в общественные объединения
-          <span style="color: #87868c">шт</span>
+          <!-- <span style="color: #87868c">шт</span> -->
         </template>
         <template v-slot:default>
           <Bar
@@ -249,6 +265,18 @@
                 },
               },
               scales: {
+                A: {
+                  id: 'A',
+                  type: 'linear',
+                  position: 'left',
+                  display: false,
+                },
+                B: {
+                  id: 'B',
+                  type: 'linear',
+                  position: 'left',
+                  display: false,
+                },
                 x: {
                   grid: {
                     display: false,
@@ -469,8 +497,8 @@
       v-if="this.hintMapArea !== -1"
       :name="getSubjectInfo(this.hintMapArea)?.name"
       :style="{
-        top: this.hintMapAreaPos.y - 110 + 'px',
-        left: this.hintMapAreaPos.x - 90 + 'px',
+        top: this.hintMapAreaPos.y - 100 + 'px',
+        left: this.hintMapAreaPos.x - 80 + 'px',
       }"
     />
   </div>
@@ -514,6 +542,7 @@ import CustomChart from "@/components/Widgets/CustomChart/CustomChart.vue";
 import LegendLabel from "@/components/Widgets/CustomChart/LegendLabel.vue";
 import MapAreaInfo from "@/components/Widgets/MapAreaInfo/MapAreaInfo.vue";
 import MapAreaHint from "@/components/Widgets/MapAreaHint/MapAreaHint.vue";
+import DropdownList from "@/components/Control/DropdownList/DropdownList.vue";
 export default defineComponent({
   components: {
     Map,
@@ -525,9 +554,10 @@ export default defineComponent({
     LegendLabel,
     MapAreaInfo,
     MapAreaHint,
+    DropdownList,
   },
   computed: {
-    ...mapGetters("MainPage", ["getStats", "getSubjectInfo"]),
+    ...mapGetters("MainPage", ["getStats", "getSubjectInfo", "getAllRegions"]),
     ...mapActions("MainPage", ["setR4Data"]),
     GetR4Data() {
       let data = $.extend(true, {}, this.getStats(2));
@@ -748,6 +778,9 @@ export default defineComponent({
 
       return tooltipEl;
     },
+    changeRegionFilter(val){
+      this.$store.dispatch("MainPage/setRegionFilter", val);
+    }
   },
   mounted() {
     fetch("Basic/GetSubjects")
