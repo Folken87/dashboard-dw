@@ -1,6 +1,7 @@
 <template>
-  <div
+  <div class="ranges"
     style="
+        userSelect: 'none',
       position: absolute;
       bottom: 0;
       left: 0;
@@ -11,6 +12,7 @@
     <span
       v-for="(it, i) in this.colors"
       :style="{
+        userSelect: 'none',
         position: 'absolute',
         left: '0',
         bottom: '0',
@@ -20,27 +22,29 @@
         height: '1.944vmin',
         zIndex: 5 - i,
       }"
-      >
+    >
     </span>
     <span
       v-for="(it, i) in this.colors"
       :style="{
+        userSelect: 'none',
         position: 'absolute',
-        left: 85 * (i)+15 + 'px',
+        left: 85 * i + 15 + 'px',
         bottom: '1.137vmin',
         width: 85 * (i + 1) + 'px',
         borderRadius: '1.211vmin',
         height: '1.944vw',
         zIndex: 5 - i,
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       }"
-      >
+    >
       {{ i * 20 + 1 }} - {{ 20 * (i + 1) }}
     </span>
   </div>
 </template>
 
 <script>
+import "./Ranges.scss"
 import { defineComponent } from "vue";
 export default defineComponent({
   data() {
