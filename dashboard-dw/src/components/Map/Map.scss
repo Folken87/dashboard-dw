@@ -15,5 +15,13 @@
     // flex-grow: 1;
     width: 100% !important;
     height: 100% !important;
+    & > path {
+      transition-duration: 0.3s;
+      opacity: 0.8;
+      &:hover {
+        transition-duration: 0.3s;
+        opacity: 1;
+      }
+    }
   }
 }

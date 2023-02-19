@@ -34,12 +34,21 @@ module.exports = {
       key: fs.readFileSync(keyFilePath),
       cert: fs.readFileSync(certFilePath),
     },
-    proxy: 
-    {
-      "^/R4/GetR4Data": {
-        target: "http://79.137.194.168:80/",
-      },
-    },
+    proxy: "http://79.137.194.168:80/",
+    // {
+    //   "^/R4/GetR4Data": {
+    //     target: "http://79.137.194.168:80/",
+    //   },
+    //   "^/AtrtittionYouth/GetAll": {
+    //     target: "http://79.137.194.168:80/",
+    //   },
+    //   "^/Basic/GetSubjects": {
+    //     target: "http://79.137.194.168:80/",
+    //   },
+    //   "^/R1/GetR1All": {
+    //     target: "http://79.137.194.168:80/",
+    //   },
+    // },
     port: 5002,
   },
   css: {

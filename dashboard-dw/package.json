@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "chart.js": "^4.2.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "core-js": "^3.8.3",
     "jest": "^29.4.3",
     "jest-editor-support": "^31.0.1",

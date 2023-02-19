@@ -10,7 +10,7 @@
       <span :style="{textDecoration: $props.filter.includes(i) ? 'line-through' : 'none'}">{{ x.split(" ").slice(0, 4).join(" ")+"..." }}</span>
     </div>
     <div class="value" :title="x">
-      <span :style="{textDecoration: $props.filter.includes(i) ? 'line-through' : 'none'}">{{ Math.round($props.customData?.datasets[0]?.data[i]) }}</span>
+      <span :style="{textDecoration: $props.filter.includes(i) ? 'line-through' : 'none'}">{{ Math.floor($props.customData?.datasets[0]?.data[i]) }}</span>
     </div>
   </div>
 </template>

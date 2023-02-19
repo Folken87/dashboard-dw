@@ -13,5 +13,6 @@ import "./style/style.scss"
 export default {
   name: "App",
   components: {},
+  
 };
 </script>

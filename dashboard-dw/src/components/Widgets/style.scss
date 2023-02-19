@@ -19,7 +19,7 @@
     letter-spacing: 0.02em;
 
     color: #000000;
-    padding-bottom: 1.389vmin;
+    padding-bottom: 0.8vmin;
   }
   & > .wrapper {
     position: relative;
@@ -29,6 +29,7 @@
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
+    justify-content: space-between;
     & > canvas {
     }
   }
@@ -64,7 +65,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // justify-content: center;
     width: 60%;
     overflow-y: auto;
     & > .headerText {
@@ -75,6 +75,7 @@
       display: flex;
       align-items: center;
       color: #000000;
+      padding-bottom: 0.926vmin;
     }
   }
 }
@@ -86,7 +87,6 @@
   justify-content: flex-start;
   padding: 0.463vmin 0.926vmin;
   & > .color {
-    width: 10%;
     display: block;
     width: 0.926vmin;
     height: 0.926vmin;
@@ -94,23 +94,39 @@
     margin: 0.463vmin;
   }
   & > .text {
-    width: 90%;
+    width: 80%;
     display: flex;
     font-weight: 400;
-    font-size: 1.141vmin;
+    font-size: 1.2vmin;
     line-height: 1.226vmin;
-    /* or 125% */
-
     color: #141b21;
   }
   & > .value {
-    // font-family: "GT Eesti LC Text";
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
     line-height: 34px;
-    /* identical to box height, or 106% */
 
+    color: #000000;
+  }
+}
+
+.mapAreaHint {
+  position: absolute;
+  z-index: 5;
+  & > span {
+    padding: 0.463vw 0.926vw;
+    background-color: #ededed;
+    border: 0.185vw solid #EDEDED;
+    border-radius: 0.463vw;
+    filter: drop-shadow(0.741vw 0.741vw 0.648vw rgba(0, 0, 0, 0.25));
+    padding: 0.463vmin;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.396vmin;
+    line-height: 1.581vmin;
+    display: flex;
+    align-items: center;
     color: #000000;
   }
 }

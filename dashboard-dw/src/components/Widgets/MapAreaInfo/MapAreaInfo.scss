@@ -2,10 +2,27 @@
   user-select: none;
   position: absolute;
   z-index: 4;
-  width: 22.5vmin;
-  height: 13.796vmin;
+  width: 27.5vmin;
+  min-height: 13.796vmin;
 
   background: #f5f3ff;
   border: 2px solid #ededed;
   border-radius: 0px 1.389vmin 1.389vmin 1.389vmin;
+  display: flex;
+  flex-direction: column;
+  & > .subjectName {
+    font-weight: 600;
+  }
+  & > span {
+    display: flex;
+    flex-direction: row;
+    padding: 0.463vmin;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.296vmin;
+    line-height: 1.481vmin;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
 }
